@@ -16,35 +16,35 @@ made by a transformer-based model.
 # Resources / Links
 
 * Very small/minimal content-assist-example
-** https://github.com/monperrus/content-assist-example
-** https://github.com/monperrus/content-assist-example/blob/master/src/content_assist_example/ExampleProposalComputer.java
+ * https://github.com/monperrus/content-assist-example
+ * https://github.com/monperrus/content-assist-example/blob/master/src/content_assist_example/ExampleProposalComputer.java
 * The more elaborate HippieProposal-Stuff
-** https://stackoverflow.com/questions/51223063/
-** https://github.com/eclipse/eclipse.platform.text/blob/master/org.eclipse.ui.workbench.texteditor/src/org/eclipse/ui/texteditor/HippieProposalProcessor.java
-** https://github.com/eclipse/eclipse.jdt.ui/blob/master/org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/text/java/HippieProposalComputer.java
+ * https://stackoverflow.com/questions/51223063/
+ * https://github.com/eclipse/eclipse.platform.text/blob/master/org.eclipse.ui.workbench.texteditor/src/org/eclipse/ui/texteditor/HippieProposalProcessor.java
+ * https://github.com/eclipse/eclipse.jdt.ui/blob/master/org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/text/java/HippieProposalComputer.java
 
 * What is the categoryId?
-** https://www.eclipse.org/forums/index.php/t/78237/
+ * https://www.eclipse.org/forums/index.php/t/78237/
 
 * Eclipse Extension points reference / This is for Javascript, but the extensionpoints are merely equally described
-** https://help.eclipse.org/2020-06/topic/org.eclipse.jdt.doc.isv/reference/extension-points/index.html?cp=3_1_1
-*** https://help.eclipse.org/2020-06/topic/org.eclipse.jdt.doc.isv/reference/extension-points/org_eclipse_jdt_ui_javaCompletionProposalComputer.html
-*** https://help.eclipse.org/2020-06/topic/org.eclipse.jdt.doc.isv/reference/extension-points/org_eclipse_jdt_ui_javaCompletionProposalSorters.html
-*** https://help.eclipse.org/2020-06/topic/org.eclipse.jdt.doc.isv/reference/extension-points/org_eclipse_jdt_ui_javaEditorTextHovers.html
-*** https://help.eclipse.org/2020-06/topic/org.eclipse.jdt.doc.isv/reference/extension-points/org_eclipse_jdt_ui_queryParticipants.html
-*** https://help.eclipse.org/2020-06/topic/org.eclipse.jdt.doc.isv/reference/extension-points/org_eclipse_jdt_ui_quickAssistProcessors.html
-*** https://help.eclipse.org/2020-06/topic/org.eclipse.jdt.doc.isv/reference/extension-points/org_eclipse_jdt_ui_quickFixProcessors.html
+ * https://help.eclipse.org/2020-06/topic/org.eclipse.jdt.doc.isv/reference/extension-points/index.html?cp=3_1_1
+  * https://help.eclipse.org/2020-06/topic/org.eclipse.jdt.doc.isv/reference/extension-points/org_eclipse_jdt_ui_javaCompletionProposalComputer.html
+  * https://help.eclipse.org/2020-06/topic/org.eclipse.jdt.doc.isv/reference/extension-points/org_eclipse_jdt_ui_javaCompletionProposalSorters.html
+  * https://help.eclipse.org/2020-06/topic/org.eclipse.jdt.doc.isv/reference/extension-points/org_eclipse_jdt_ui_javaEditorTextHovers.html
+  * https://help.eclipse.org/2020-06/topic/org.eclipse.jdt.doc.isv/reference/extension-points/org_eclipse_jdt_ui_queryParticipants.html
+  * https://help.eclipse.org/2020-06/topic/org.eclipse.jdt.doc.isv/reference/extension-points/org_eclipse_jdt_ui_quickAssistProcessors.html
+  * https://help.eclipse.org/2020-06/topic/org.eclipse.jdt.doc.isv/reference/extension-points/org_eclipse_jdt_ui_quickFixProcessors.html
 
 * Eclipse Help/API - Refactoring
-** https://help.eclipse.org/2019-12/index.jsp?topic=%2Forg.eclipse.jdt.doc.isv%2Freference%2Fapi%2Forg%2Feclipse%2Fjdt%2Fcore%2Frefactoring%2Fparticipants%2Fpackage-summary.html
-** https://help.eclipse.org/2020-06/index.jsp?nav=%2F4
-** https://help.eclipse.org/2020-06/index.jsp?topic=%2Forg.eclipse.jdt.doc.isv%2Freference%2Fapi%2Forg%2Feclipse%2Fjdt%2Fui%2Ftext%2FIJavaPartitions.html
+ * https://help.eclipse.org/2019-12/index.jsp?topic=%2Forg.eclipse.jdt.doc.isv%2Freference%2Fapi%2Forg%2Feclipse%2Fjdt%2Fcore%2Frefactoring%2Fparticipants%2Fpackage-summary.html
+ * https://help.eclipse.org/2020-06/index.jsp?nav=%2F4
+ * https://help.eclipse.org/2020-06/index.jsp?topic=%2Forg.eclipse.jdt.doc.isv%2Freference%2Fapi%2Forg%2Feclipse%2Fjdt%2Fui%2Ftext%2FIJavaPartitions.html
 
 * How-To Rename a method using JDT
-** https://stackoverflow.com/questions/12968328/how-to-programmatically-rename-a-method-using-jdt
+ * https://stackoverflow.com/questions/12968328/how-to-programmatically-rename-a-method-using-jdt
 
 * Eclipse-LSP
-** https://www.eclipse.org/community/eclipse_newsletter/2017/may/article3.php
+ * https://www.eclipse.org/community/eclipse_newsletter/2017/may/article3.php
 
 * An eclipse plugin for automatic refactoring / will be integrated in future versions of eclipse
-** https://github.com/JnRouvignac/AutoRefactor
+ * https://github.com/JnRouvignac/AutoRefactor
