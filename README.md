@@ -18,10 +18,15 @@ made by a transformer-based model.
 * Very small/minimal content-assist-example
   * https://github.com/monperrus/content-assist-example
   * https://github.com/monperrus/content-assist-example/blob/master/src/content_assist_example/ExampleProposalComputer.java
+  
+* Also compact example also showing how to add the icon / contains some interesting helper methods...
+  * http://codeandme.blogspot.com/2014/05/extending-jsdt-adding-your-own-content.html
+  
 * The more elaborate HippieProposal-Stuff
   * https://stackoverflow.com/questions/51223063/
   * https://github.com/eclipse/eclipse.platform.text/blob/master/org.eclipse.ui.workbench.texteditor/src/org/eclipse/ui/texteditor/HippieProposalProcessor.java
   * https://github.com/eclipse/eclipse.jdt.ui/blob/master/org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/text/java/HippieProposalComputer.java
+  * https://stackoverflow.com/questions/20779899
 
 * What is the categoryId?
   * https://www.eclipse.org/forums/index.php/t/78237/
@@ -48,3 +53,6 @@ made by a transformer-based model.
 
 * An eclipse plugin for automatic refactoring / will be integrated in future versions of eclipse
   * https://github.com/JnRouvignac/AutoRefactor
+  
+* Writing an Eclipse plugin
+  * https://cvalcarcel.wordpress.com/2009/10/11/writing-an-eclipse-plug-in-part-5-adding-icons-and-a-new-project-structure/
