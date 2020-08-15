@@ -20,14 +20,13 @@
    <extension
          point="org.eclipse.jdt.ui.javaCompletionProposalComputer"
          id="proposal_category"
-         name="FluentGenesis Code Completer">
+         name="FluentGenesis Code Proposals">
          <proposalCategory icon="hashi_64.gif"/>
    </extension>
-   
-  <extension 
+   <extension 
    		point="org.eclipse.jdt.ui.javaCompletionProposalComputer" 
    		id="fluentgenesis_proposal" 
-   		name="FluentGenesis Code Completer"> 
+   		name="FluentGenesis Code Proposals"> 
       <javaCompletionProposalComputer
       		activate="true"
       		categoryId="FluentGenesis-Plugin.proposal_category"
