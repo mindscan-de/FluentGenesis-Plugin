@@ -25,44 +25,54 @@
  */
 package de.mindscan.fluentgenesis.recommender.proposal;
 
-import java.util.Arrays;
-import java.util.List;
-
-import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.jdt.ui.text.java.ContentAssistInvocationContext;
-import org.eclipse.jdt.ui.text.java.IJavaCompletionProposalComputer;
+import org.eclipse.jface.text.ITextViewer;
 import org.eclipse.jface.text.contentassist.ICompletionProposal;
+import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
 import org.eclipse.jface.text.contentassist.IContextInformation;
+import org.eclipse.jface.text.contentassist.IContextInformationValidator;
 
 /**
  * 
  */
-public class ProposalComputer implements IJavaCompletionProposalComputer {
+public class ProposalProcessor implements IContentAssistProcessor {
 
-    private final ProposalProcessor proposalProcessor = new ProposalProcessor();
+    private static final ICompletionProposal[] EMPTY_PROPOSALS = new ICompletionProposal[0];
+    private static final IContextInformation[] EMPTY_CONTEXTS = new IContextInformation[0];
+
+    private static final String UNHELPFUL_ERROR_MESSAGE = "The proposal computer got an error during code completion.";
 
     /** 
      * {@inheritDoc}
      */
     @Override
-    public void sessionStarted() {
-        // intentionally left blank
+    public ICompletionProposal[] computeCompletionProposals( ITextViewer viewer, int offset ) {
+        return EMPTY_PROPOSALS;
     }
 
     /** 
      * {@inheritDoc}
      */
     @Override
-    public List<ICompletionProposal> computeCompletionProposals( ContentAssistInvocationContext context, IProgressMonitor monitor ) {
-        return Arrays.asList( proposalProcessor.computeCompletionProposals( context.getViewer(), context.getInvocationOffset() ) );
+    public IContextInformation[] computeContextInformation( ITextViewer viewer, int offset ) {
+        return EMPTY_CONTEXTS;
     }
 
     /** 
      * {@inheritDoc}
      */
     @Override
-    public List<IContextInformation> computeContextInformation( ContentAssistInvocationContext context, IProgressMonitor monitor ) {
-        return Arrays.asList( proposalProcessor.computeContextInformation( context.getViewer(), context.getInvocationOffset() ) );
+    public char[] getCompletionProposalAutoActivationCharacters() {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    /** 
+     * {@inheritDoc}
+     */
+    @Override
+    public char[] getContextInformationAutoActivationCharacters() {
+        // TODO Auto-generated method stub
+        return null;
     }
 
     /** 
@@ -70,15 +80,16 @@ public class ProposalComputer implements IJavaCompletionProposalComputer {
      */
     @Override
     public String getErrorMessage() {
-        return proposalProcessor.getErrorMessage();
+        return UNHELPFUL_ERROR_MESSAGE;
     }
 
     /** 
      * {@inheritDoc}
      */
     @Override
-    public void sessionEnded() {
-        // intentionally left blank
+    public IContextInformationValidator getContextInformationValidator() {
+        // TODO Auto-generated method stub
+        return null;
     }
 
 }
