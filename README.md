@@ -13,6 +13,12 @@ please do not copy bad habits I simply might not know about.
 Maybe i will integrate it into a client-server-server architecture presenting a feed of the latest predictions
 made by a transformer-based model.
 
+# System Context
+
+To further understand the architecture, you might want to have a look at the following diagram.
+
+![System Context of FluentGenesis-Plugin](./doc/images/SystemContext_v1.png)
+
 # Resources / Links
 
 * Very small/minimal content-assist-example
