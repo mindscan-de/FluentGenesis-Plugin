@@ -16,13 +16,21 @@
             class="de.mindscan.fluentgenesis.recommender.preferences.PreferenceInitializer">
       </initializer>
    </extension>
+   
+   <extension
+         point="org.eclipse.jdt.ui.javaCompletionProposalComputer"
+         id="proposal_category"
+         name="FluentGenesis Code Completer">
+         <proposalCategory icon="hashi_64.gif"/>
+   </extension>
+   
   <extension 
    		point="org.eclipse.jdt.ui.javaCompletionProposalComputer" 
    		id="fluentgenesis_proposal" 
    		name="FluentGenesis Code Completer"> 
       <javaCompletionProposalComputer
       		activate="true"
-      		categoryId="de.mindscan.fluentgenesis.recommender.proposal.fluentgenesis_category"
+      		categoryId="FluentGenesis-Plugin.proposal_category"
       		class="de.mindscan.fluentgenesis.recommender.proposal.ProposalComputer">
       		<!--
       			Left free, if no partition is given, the proposal is added to all partition types

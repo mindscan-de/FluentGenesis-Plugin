@@ -75,6 +75,7 @@ public class FluentGenesisCodeCompletionProposal implements ICompletionProposal 
     @Override
     public Image getImage() {
         // intentionally left blank here right now
+        // hashi_64.gif but how...
         return null;
     }
 
