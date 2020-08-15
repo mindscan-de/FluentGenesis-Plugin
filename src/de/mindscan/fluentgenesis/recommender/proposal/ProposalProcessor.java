@@ -49,11 +49,16 @@ public class ProposalProcessor implements IContentAssistProcessor {
      */
     @Override
     public ICompletionProposal[] computeCompletionProposals( ITextViewer viewer, int offset ) {
-        ArrayList<CompletionProposal> proposals = new ArrayList<>();
+        try {
+            ArrayList<CompletionProposal> proposals = new ArrayList<>();
 
-        proposals.add( new CompletionProposal( "do_this_replacemet", offset, 0, "do_this_replacemet".length() ) );
+            proposals.add( new CompletionProposal( "do_this_replacemet", offset, 0, "do_this_replacemet".length() ) );
 
-        return proposals.toArray( new ICompletionProposal[proposals.size()] );
+            return proposals.toArray( new ICompletionProposal[proposals.size()] );
+        }
+        catch (Exception ex) {
+            return EMPTY_PROPOSALS;
+        }
     }
 
     /** 
