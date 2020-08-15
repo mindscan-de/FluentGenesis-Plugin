@@ -11,3 +11,4 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.jface.text;bundle-version="3.16.300"
 Automatic-Module-Name: FluentGenesis.Plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-14
+Bundle-Activator: de.mindscan.fluentgenesis.recommender.plugin.Activator
