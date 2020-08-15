@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: FluentGenesis-Plugin
+Bundle-SymbolicName: FluentGenesis-Plugin;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Vendor: de.mindscan
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.ui
+Automatic-Module-Name: FluentGenesis.Plugin
+Bundle-RequiredExecutionEnvironment: JavaSE-14
