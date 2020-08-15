@@ -62,7 +62,6 @@ public class ProposalProcessor implements IContentAssistProcessor {
      */
     @Override
     public char[] getCompletionProposalAutoActivationCharacters() {
-        // TODO Auto-generated method stub
         return null;
     }
 
@@ -71,7 +70,6 @@ public class ProposalProcessor implements IContentAssistProcessor {
      */
     @Override
     public char[] getContextInformationAutoActivationCharacters() {
-        // TODO Auto-generated method stub
         return null;
     }
 
@@ -88,7 +86,6 @@ public class ProposalProcessor implements IContentAssistProcessor {
      */
     @Override
     public IContextInformationValidator getContextInformationValidator() {
-        // TODO Auto-generated method stub
         return null;
     }
 
