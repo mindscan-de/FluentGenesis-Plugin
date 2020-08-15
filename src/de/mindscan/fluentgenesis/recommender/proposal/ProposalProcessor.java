@@ -25,7 +25,10 @@
  */
 package de.mindscan.fluentgenesis.recommender.proposal;
 
+import java.util.ArrayList;
+
 import org.eclipse.jface.text.ITextViewer;
+import org.eclipse.jface.text.contentassist.CompletionProposal;
 import org.eclipse.jface.text.contentassist.ICompletionProposal;
 import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
 import org.eclipse.jface.text.contentassist.IContextInformation;
@@ -46,7 +49,11 @@ public class ProposalProcessor implements IContentAssistProcessor {
      */
     @Override
     public ICompletionProposal[] computeCompletionProposals( ITextViewer viewer, int offset ) {
-        return EMPTY_PROPOSALS;
+        ArrayList<CompletionProposal> proposals = new ArrayList<>();
+
+        proposals.add( new CompletionProposal( "do_this_replacemet", offset, 0, "do_this_replacemet".length() ) );
+
+        return proposals.toArray( new ICompletionProposal[proposals.size()] );
     }
 
     /** 
