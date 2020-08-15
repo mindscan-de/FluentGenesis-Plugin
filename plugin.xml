@@ -18,14 +18,14 @@
    </extension>
   <extension 
    		point="org.eclipse.jdt.ui.javaCompletionProposalComputer" 
-   		id="WordCompletionProposalComputer" 
-   		name="FluentGenesis CodeCompleter"> 
+   		id="fluentgenesis_proposal" 
+   		name="FluentGenesis Code Completer"> 
       <javaCompletionProposalComputer
       		activate="true"
-      		categoryId="de.mindscan.fluentgenesis.recommender.ProposalComputer"
-      		class="de.mindscan.fluentgenesis.recommender.ProposalComputer">
+      		categoryId="de.mindscan.fluentgenesis.recommender.proposal.fluentgenesis_category"
+      		class="de.mindscan.fluentgenesis.recommender.proposal.ProposalComputer">
       		<!--
-      			Left free, if no partition is given, the proposal is assed to all partition types
+      			Left free, if no partition is given, the proposal is added to all partition types
       		-->
       </javaCompletionProposalComputer>
    </extension>
