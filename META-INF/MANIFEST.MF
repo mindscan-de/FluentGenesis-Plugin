@@ -5,6 +5,9 @@ Bundle-SymbolicName: FluentGenesis-Plugin;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-Vendor: de.mindscan
 Require-Bundle: org.eclipse.core.runtime,
- org.eclipse.ui
+ org.eclipse.ui,
+ org.eclipse.jdt;bundle-version="3.18.400",
+ org.eclipse.jdt.ui;bundle-version="3.21.100",
+ org.eclipse.jface.text;bundle-version="3.16.300"
 Automatic-Module-Name: FluentGenesis.Plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-14

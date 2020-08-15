@@ -16,5 +16,17 @@
             class="de.mindscan.fluentgenesis.recommender.preferences.PreferenceInitializer">
       </initializer>
    </extension>
-
+  <extension 
+   		point="org.eclipse.jdt.ui.javaCompletionProposalComputer" 
+   		id="WordCompletionProposalComputer" 
+   		name="FluentGenesis CodeCompleter"> 
+      <javaCompletionProposalComputer
+      		activate="true"
+      		categoryId="de.mindscan.fluentgenesis.recommender.ProposalComputer"
+      		class="de.mindscan.fluentgenesis.recommender.ProposalComputer">
+      		<!--
+      			Left free, if no partition is given, the proposal is assed to all partition types
+      		-->
+      </javaCompletionProposalComputer>
+   </extension>
 </plugin>
