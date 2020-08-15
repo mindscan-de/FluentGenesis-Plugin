@@ -34,6 +34,8 @@ import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
 import org.eclipse.jface.text.contentassist.IContextInformation;
 import org.eclipse.jface.text.contentassist.IContextInformationValidator;
 
+import de.mindscan.fluentgenesis.recommender.plugin.Activator;
+
 /**
  * 
  */
@@ -52,7 +54,8 @@ public class ProposalProcessor implements IContentAssistProcessor {
         try {
             ArrayList<CompletionProposal> proposals = new ArrayList<>();
 
-            proposals.add( new CompletionProposal( "do_this_replacemet", offset, 0, "do_this_replacemet".length() ) );
+            proposals.add( new CompletionProposal( "do_this_replacemet", offset, 0, "do_this_replacemet".length(), Activator.getDefaultImage(), "displayString",
+                            null, "additional info" ) );
 
             return proposals.toArray( new ICompletionProposal[proposals.size()] );
         }

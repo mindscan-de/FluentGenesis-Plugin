@@ -25,6 +25,9 @@
  */
 package de.mindscan.fluentgenesis.recommender.plugin;
 
+import org.eclipse.jface.resource.ImageDescriptor;
+import org.eclipse.swt.graphics.Image;
+import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
 
@@ -35,11 +38,23 @@ public class Activator implements BundleActivator {
 
     private static BundleContext context;
 
+    // TODO: Actually this doesn't belong here, anyways, can be transferred later
+    private static Image defaultImage;
+
     /**
      * @return the context
      */
     public static BundleContext getContext() {
         return context;
+    }
+
+    public static Image getDefaultImage() {
+        if (defaultImage == null) {
+            ImageDescriptor imageDescriptorFromPlugin = AbstractUIPlugin.imageDescriptorFromPlugin( "FluentGenesis-Plugin", "hashi_16.gif" );
+            defaultImage = imageDescriptorFromPlugin.createImage();
+        }
+
+        return defaultImage;
     }
 
     /** 
