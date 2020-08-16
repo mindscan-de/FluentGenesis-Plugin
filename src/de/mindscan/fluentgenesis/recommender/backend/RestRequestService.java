@@ -28,8 +28,14 @@ package de.mindscan.fluentgenesis.recommender.backend;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.lang.reflect.Type;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 /**
  * 
@@ -39,6 +45,9 @@ public class RestRequestService {
     public final static String SERVER = "http://localhost:8000/";
     public final static String PREDICT_NAMES_PATH = "predictMethodNames/5";
 
+    public final static Type listType = new TypeToken<ArrayList<String>>() {
+    }.getType();
+
     /**
      * 
      */
@@ -46,7 +55,7 @@ public class RestRequestService {
         // TODO Auto-generated constructor stub
     }
 
-    public void requestMethodNamePredictions() {
+    public List<String> requestMethodNamePredictions() {
         try {
             URL url = new URL( SERVER + PREDICT_NAMES_PATH );
             HttpURLConnection con = (HttpURLConnection) url.openConnection();
@@ -56,20 +65,24 @@ public class RestRequestService {
             int status = con.getResponseCode();
             System.out.println( "Status is: " + status );
 
-            StringBuffer content = new StringBuffer();
+            StringBuffer reqestContent = new StringBuffer();
             try (BufferedReader in = new BufferedReader( new InputStreamReader( con.getInputStream() ) );) {
                 String inputLine;
                 while ((inputLine = in.readLine()) != null) {
-                    content.append( inputLine );
+                    reqestContent.append( inputLine );
                 }
             }
 
-            System.out.println( content );
+            Gson gson = new Gson();
+            List<String> predictedMethodNames = gson.fromJson( reqestContent.toString(), listType );
 
+            System.out.println( predictedMethodNames.toString() );
+
+            return predictedMethodNames;
         }
         catch (IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
+            return List.of();
         }
     }
 }
