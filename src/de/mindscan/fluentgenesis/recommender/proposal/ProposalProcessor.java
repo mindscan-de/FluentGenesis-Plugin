@@ -26,6 +26,7 @@
 package de.mindscan.fluentgenesis.recommender.proposal;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.eclipse.jface.text.ITextViewer;
 import org.eclipse.jface.text.contentassist.CompletionProposal;
@@ -34,6 +35,7 @@ import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
 import org.eclipse.jface.text.contentassist.IContextInformation;
 import org.eclipse.jface.text.contentassist.IContextInformationValidator;
 
+import de.mindscan.fluentgenesis.recommender.backend.RestRequestService;
 import de.mindscan.fluentgenesis.recommender.plugin.Activator;
 
 /**
@@ -46,16 +48,25 @@ public class ProposalProcessor implements IContentAssistProcessor {
 
     private static final String UNHELPFUL_ERROR_MESSAGE = "The proposal computer got an error during code completion.";
 
+    private RestRequestService predictionService = new RestRequestService();
+
     /** 
      * {@inheritDoc}
      */
     @Override
     public ICompletionProposal[] computeCompletionProposals( ITextViewer viewer, int offset ) {
         try {
+            List<String> methodNames = predictionService.requestMethodNamePredictions();
+
             ArrayList<CompletionProposal> proposals = new ArrayList<>();
 
-            proposals.add( new CompletionProposal( "do_this_replacemet", offset, 0, "do_this_replacemet".length(), Activator.getDefaultImage(), "displayString",
-                            null, "additional info" ) );
+            int counter = 0;
+            for (String name : methodNames) {
+                String newContent = "/* " + name + " */";
+                proposals.add( new CompletionProposal( newContent, offset, 0, newContent.length(), Activator.getDefaultImage(),
+                                "methodname[" + counter + "]: " + name, null, "This is a predicted method name of the FluenetGenesis-Project." ) );
+                counter++;
+            }
 
             return proposals.toArray( new ICompletionProposal[proposals.size()] );
         }
