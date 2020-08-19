@@ -5,12 +5,23 @@ import org.junit.jupiter.api.Test;;
 public class RestRequestServiceTest {
 
     @Test
-    public void testRequestMethodNamePredictions() throws Exception {
+    public void testRequestMethodNamePredictionsGET() throws Exception {
         // arrange
         RestRequestService service = new RestRequestService();
 
         // act
-        service.requestMethodNamePredictions();
+        service.requestMethodNamePredictionsGET();
+
+        // assert
+    }
+
+    @Test
+    public void testRequestMethodNamePredictionsPOST() throws Exception {
+        // arrange
+        RestRequestService service = new RestRequestService();
+
+        // act
+        service.requestMethodNamePredictionsPOST( "", 6 );
 
         // assert
 

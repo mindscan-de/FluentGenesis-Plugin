@@ -62,3 +62,6 @@ To further understand the architecture, you might want to have a look at the fol
   
 * Writing an Eclipse plugin
   * https://cvalcarcel.wordpress.com/2009/10/11/writing-an-eclipse-plug-in-part-5-adding-icons-and-a-new-project-structure/
+
+* Sending a request via Java HTTPConnection / and read result
+  * https://www.baeldung.com/java-http-request
