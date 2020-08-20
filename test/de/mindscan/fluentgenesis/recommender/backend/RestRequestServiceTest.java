@@ -20,8 +20,14 @@ public class RestRequestServiceTest {
         // arrange
         RestRequestService service = new RestRequestService();
 
+        String code = "if (add) \n" + //
+                        "   this.playerList.add(player); \n" + //
+                        "else \n" + //
+                        "    this.playerList.remove(player); \n" + //
+                        "return this.containsPlayer(player);";
+
         // act
-        service.requestMethodNamePredictionsPOST( "", 6 );
+        service.requestMethodNamePredictionsPOST( code, 6 );
 
         // assert
 

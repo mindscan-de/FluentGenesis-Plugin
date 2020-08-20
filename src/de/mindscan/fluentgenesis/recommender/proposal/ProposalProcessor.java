@@ -28,7 +28,9 @@ package de.mindscan.fluentgenesis.recommender.proposal;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.jface.text.IDocument;
 import org.eclipse.jface.text.ITextViewer;
+import org.eclipse.jface.text.ITypedRegion;
 import org.eclipse.jface.text.contentassist.CompletionProposal;
 import org.eclipse.jface.text.contentassist.ICompletionProposal;
 import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
@@ -55,15 +57,25 @@ public class ProposalProcessor implements IContentAssistProcessor {
      */
     @Override
     public ICompletionProposal[] computeCompletionProposals( ITextViewer viewer, int offset ) {
-        String methodBody = """
-                        if (add)
-                            this.playerList.add(player);
-                        else
-                            this.playerList.remove(player);
-                        return this.containsPlayer(player);
-                        """;
+        String methodBody = "" + // 
+                        "if (add) \n" + //
+                        "   this.playerList.add(player); \n" + //
+                        "else \n" + //
+                        "    this.playerList.remove(player); \n" + //
+                        "return this.containsPlayer(player);";
 
         try {
+            IDocument document = viewer.getDocument();
+
+            ITypedRegion partition = document.getPartition( offset );
+            System.out.println( "Partition type: " + partition.getType() );
+
+            // TODO: extract the method body from the viewer and the offset. We should look out for a preceeding
+
+            //       method definition and search for the end of the method as well. maybe we can use JDT or something easier... 
+            //       and then exract that
+            //       maybe we can just take the selection of the user, for the demo case.
+
             List<String> methodNames = predictionService.requestMethodNamePredictionsPOST( methodBody, 5 );
 
             ArrayList<CompletionProposal> proposals = new ArrayList<>();
