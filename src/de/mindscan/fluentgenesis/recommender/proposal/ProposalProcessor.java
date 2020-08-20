@@ -55,8 +55,16 @@ public class ProposalProcessor implements IContentAssistProcessor {
      */
     @Override
     public ICompletionProposal[] computeCompletionProposals( ITextViewer viewer, int offset ) {
+        String methodBody = """
+                        if (add)
+                            this.playerList.add(player);
+                        else
+                            this.playerList.remove(player);
+                        return this.containsPlayer(player);
+                        """;
+
         try {
-            List<String> methodNames = predictionService.requestMethodNamePredictionsGET();
+            List<String> methodNames = predictionService.requestMethodNamePredictionsPOST( methodBody, 5 );
 
             ArrayList<CompletionProposal> proposals = new ArrayList<>();
 

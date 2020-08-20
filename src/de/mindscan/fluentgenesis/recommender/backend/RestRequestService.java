@@ -59,11 +59,13 @@ public class RestRequestService {
      * 
      */
     public RestRequestService() {
-        // TODO Auto-generated constructor stub
+        // intentionally left blank
     }
 
     public List<String> requestMethodNamePredictionsGET() {
         try {
+            // TODO: LRU-Cache 64 items / if in cache return the decoded json dataset instead
+
             URL url = new URL( SERVER + PREDICT_NAMES_GET_PATH + "5" );
             HttpURLConnection con = (HttpURLConnection) url.openConnection();
             con.setRequestMethod( "GET" );
@@ -71,6 +73,7 @@ public class RestRequestService {
 
             StringBuffer reqestContent = retrieveHTTPResponse( con );
 
+            // TODO: use the LRU-Chache / the caching should be an adapter instead
             return decodeJsonDataToList( reqestContent.toString() );
         }
         catch (IOException e) {
@@ -102,17 +105,11 @@ public class RestRequestService {
         return predictedMethodNames;
     }
 
-    public List<String> requestMethodNamePredictionsPOST( String methodContent, int maxPredictions ) {
-        String methodBody = """
-                        if (add)
-                            this.playerList.add(player);
-                        else
-                            this.playerList.remove(player);
-                        return this.containsPlayer(player);
-                        """;
-
+    public List<String> requestMethodNamePredictionsPOST( String methodBody, int maxPredictions ) {
         try {
             Map<String, String> parameters = new LinkedHashMap<>();
+
+            // TODO: LRU-Cache 64 items / if in cache return the decoded json dataset instead
 
             // SEND THE MTEHOD BODY VIA POST body
             parameters.put( "body", methodBody );
@@ -121,27 +118,32 @@ public class RestRequestService {
             HttpURLConnection con = (HttpURLConnection) url.openConnection();
             con.setRequestMethod( "POST" );
 
-            // what we accept: accept: application/json
-            con.setRequestProperty( "accept", "application/json" );
-            // how we deliver: Content-type: x-www-form-urlencoded
-            con.setRequestProperty( "Content-Type", "application/x-www-form-urlencoded" );
-
-            // send the encoded data 
-            con.setDoOutput( true );
-            DataOutputStream out = new DataOutputStream( con.getOutputStream() );
-            out.writeBytes( buildUrlEncodedParameters( parameters ) );
-            out.flush();
-            out.close();
+            sendPOSTRequestData( con, parameters );
 
             // retrieve the response
             StringBuffer reqestContent = retrieveHTTPResponse( con );
 
+            // TODO: use the LRU-Chache / the caching should be an adapter instead 
             return decodeJsonDataToList( reqestContent.toString() );
         }
         catch (IOException e) {
             e.printStackTrace();
             return List.of();
         }
+    }
+
+    private void sendPOSTRequestData( HttpURLConnection con, Map<String, String> parameters ) throws IOException {
+        // what we accept: accept: application/json
+        con.setRequestProperty( "accept", "application/json" );
+        // how we deliver: Content-type: x-www-form-urlencoded
+        con.setRequestProperty( "Content-Type", "application/x-www-form-urlencoded" );
+
+        // send the encoded data 
+        con.setDoOutput( true );
+        DataOutputStream out = new DataOutputStream( con.getOutputStream() );
+        out.writeBytes( buildUrlEncodedParameters( parameters ) );
+        out.flush();
+        out.close();
     }
 
     private String buildUrlEncodedParameters( Map<String, String> parameters ) {
@@ -157,6 +159,6 @@ public class RestRequestService {
         }
 
         return builder.toString();
-    }
 
+    }
 }
