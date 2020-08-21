@@ -28,14 +28,13 @@ package de.mindscan.fluentgenesis.recommender.proposal;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.jface.text.IDocument;
 import org.eclipse.jface.text.ITextViewer;
-import org.eclipse.jface.text.ITypedRegion;
 import org.eclipse.jface.text.contentassist.CompletionProposal;
 import org.eclipse.jface.text.contentassist.ICompletionProposal;
 import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
 import org.eclipse.jface.text.contentassist.IContextInformation;
 import org.eclipse.jface.text.contentassist.IContextInformationValidator;
+import org.eclipse.swt.graphics.Point;
 
 import de.mindscan.fluentgenesis.recommender.backend.RestRequestService;
 import de.mindscan.fluentgenesis.recommender.plugin.Activator;
@@ -52,11 +51,13 @@ public class ProposalProcessor implements IContentAssistProcessor {
 
     private RestRequestService predictionService = new RestRequestService();
 
+    String latestErrorMessage = UNHELPFUL_ERROR_MESSAGE;
+
     /** 
      * {@inheritDoc}
      */
     @Override
-    public ICompletionProposal[] computeCompletionProposals( ITextViewer viewer, int offset ) {
+    public ICompletionProposal[] computeCompletionProposals( ITextViewer viewer, int invocationOffset ) {
         String methodBody = "" + // 
                         "if (add) \n" + //
                         "   this.playerList.add(player); \n" + //
@@ -65,10 +66,10 @@ public class ProposalProcessor implements IContentAssistProcessor {
                         "return this.containsPlayer(player);";
 
         try {
-            IDocument document = viewer.getDocument();
 
-            ITypedRegion partition = document.getPartition( offset );
-            System.out.println( "Partition type: " + partition.getType() );
+            // if there is a selection, then use the selection otherwise try to find the start of the method.
+            String theSelectedContent = getSelectedTextFromDocument( viewer, invocationOffset );
+            System.out.println( "XXXX> " + theSelectedContent );
 
             // TODO: extract the method body from the viewer and the offset. We should look out for a preceeding
 
@@ -76,14 +77,14 @@ public class ProposalProcessor implements IContentAssistProcessor {
             //       and then exract that
             //       maybe we can just take the selection of the user, for the demo case.
 
-            List<String> methodNames = predictionService.requestMethodNamePredictionsPOST( methodBody, 5 );
+            List<String> methodNames = predictionService.requestMethodNamePredictionsPOST( theSelectedContent.isBlank() ? methodBody : theSelectedContent, 5 );
 
             ArrayList<CompletionProposal> proposals = new ArrayList<>();
 
             int counter = 0;
             for (String name : methodNames) {
                 String newContent = "/* " + name + " */";
-                proposals.add( new CompletionProposal( newContent, offset, 0, newContent.length(), Activator.getDefaultImage(),
+                proposals.add( new CompletionProposal( newContent, invocationOffset, 0, newContent.length(), Activator.getDefaultImage(),
                                 "methodname[" + counter + "]: " + name, null, "This is a predicted method name of the FluenetGenesis-Project." ) );
                 counter++;
             }
@@ -91,8 +92,24 @@ public class ProposalProcessor implements IContentAssistProcessor {
             return proposals.toArray( new ICompletionProposal[proposals.size()] );
         }
         catch (Exception ex) {
+            setLatestErrorMessage( ex.getMessage() );
             return EMPTY_PROPOSALS;
         }
+    }
+
+    private String getSelectedTextFromDocument( ITextViewer viewer, int invocationOffset ) {
+
+        String currentText = viewer.getDocument().get();
+//        String before = currentText.substring( 0,invocationOffset );
+//        String after = currentText.substring( invocationOffset );
+
+        Point selectedRange = viewer.getSelectedRange();
+        int offset = selectedRange.x;
+        int length = selectedRange.y;
+
+        String selectedText = currentText.substring( offset, length + offset );
+
+        return selectedText;
     }
 
     /** 
@@ -124,7 +141,11 @@ public class ProposalProcessor implements IContentAssistProcessor {
      */
     @Override
     public String getErrorMessage() {
-        return UNHELPFUL_ERROR_MESSAGE;
+        return latestErrorMessage;
+    }
+
+    void setLatestErrorMessage( String latestErrorMessage ) {
+        this.latestErrorMessage = latestErrorMessage;
     }
 
     /** 
