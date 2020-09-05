@@ -21,7 +21,7 @@
          point="org.eclipse.jdt.ui.javaCompletionProposalComputer"
          id="proposal_category"
          name="FluentGenesis Code Proposals">
-         <proposalCategory icon="hashi_64.gif"/>
+         <proposalCategory icon="hashi_16.gif"/>
    </extension>
    <extension 
    		point="org.eclipse.jdt.ui.javaCompletionProposalComputer" 
